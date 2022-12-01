@@ -7,8 +7,9 @@ app = Celery('tasks', broker='redis://localhost')
 
 r = redis.Redis()
 
-@app.task
+
+@app.task(trail=True)
 def add(x, y):
-    time.sleep(6)
+    time.sleep(1)
     r.set('value', x+y)
     return x + y
